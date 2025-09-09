@@ -13,7 +13,7 @@ Before deploying, ensure you have:
 
 ## 🌐 Platform-Specific Deployment
 
-### 1. Vercel Deployment
+### 1. Vercel Deployment ⭐ UPDATED
 
 #### Quick Deploy:
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/streamrush)
@@ -37,16 +37,22 @@ Before deploying, ensure you have:
    ```
 
 4. **Set Environment Variables** in Vercel Dashboard:
-   - Go to your project settings
-   - Add these environment variables:
-   ```
-   VITE_FIREBASE_API_KEY=your_api_key
+   - Go to your project → Settings → Environment Variables
+   - Add ALL these environment variables:
+   ```bash
+   # Firebase Configuration
+   VITE_FIREBASE_API_KEY=AIzaSyC136_Tu7REHksgg6zVMYjDt7ty33SQ548
    VITE_FIREBASE_AUTH_DOMAIN=vidstream-98e50.firebaseapp.com
    VITE_FIREBASE_PROJECT_ID=vidstream-98e50
    VITE_FIREBASE_STORAGE_BUCKET=vidstream-98e50.firebasestorage.app
-   VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-   VITE_FIREBASE_APP_ID=your_app_id
-   VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+   VITE_FIREBASE_MESSAGING_SENDER_ID=910715837016
+   VITE_FIREBASE_APP_ID=1:910715837016:web:478f07f8fe638d2655c82d
+   VITE_FIREBASE_MEASUREMENT_ID=G-2J03W47ZKB
+   
+   # Cloudinary Configuration
+   VITE_CLOUDINARY_CLOUD_NAME=dxcd1rspr
+   VITE_CLOUDINARY_API_KEY=IEIm0pODuK11xh7FEzK1JQdtlQA
+   VITE_CLOUDINARY_UPLOAD_PRESET=streamrush_uploads
    ```
 
 5. **Redeploy**:
@@ -54,10 +60,19 @@ Before deploying, ensure you have:
    vercel --prod
    ```
 
-#### Configuration:
-- ✅ `vercel.json` already configured
-- ✅ SPA routing handled
-- ✅ Security headers included
+#### ✅ Configuration Fixed:
+- ✅ **`vercel.json` updated with proper SPA routing**
+- ✅ **Build configuration optimized for Vite**
+- ✅ **Output directory set to `dist`**
+- ✅ **Client-side routing properly handled**
+- ✅ **Security headers included**
+- ✅ **Environment variables template updated**
+
+#### 🔧 Recent Fixes Applied:
+1. **Fixed SPA Routing**: Added proper `builds`, `routes`, and `rewrites` configuration
+2. **Base Path**: Added `base: "./"` to `vite.config.ts` for deployment compatibility
+3. **Environment Variables**: Added Cloudinary variables to vercel.json template
+4. **Output Directory**: Confirmed `dist` folder configuration is correct
 
 ### 2. Netlify Deployment
 
