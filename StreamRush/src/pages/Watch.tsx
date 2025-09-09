@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReactPlayer from 'react-player';
 import { formatDistanceToNow } from 'date-fns';
 import { ThumbsUp, ThumbsDown, Share, Download, MoreHorizontal, Bell, Bookmark } from 'lucide-react';
 import { useVideo } from '../contexts/VideoContextWithCloudinary';
@@ -9,6 +8,7 @@ import { Video, Comment } from '../types';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import AddToPlaylistModal from '../components/AddToPlaylistModal';
+import VideoPlayer from '../components/VideoPlayer';
 
 import toast from 'react-hot-toast';
 
@@ -24,6 +24,7 @@ const Watch: React.FC = () => {
   const [userDislikedVideo, setUserDislikedVideo] = useState(false);
   const [channelData, setChannelData] = useState<any>(null);
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [userSettings, setUserSettings] = useState<any>(null);
   
   const { 
     getVideo, 
@@ -40,6 +41,28 @@ const Watch: React.FC = () => {
   
   const { currentUser, userProfile } = useAuth();
   const navigate = useNavigate();
+
+  // Load user settings
+  const loadUserSettings = useCallback(() => {
+    if (currentUser) {
+      const savedSettings = localStorage.getItem(`settings_${currentUser.uid}`);
+      if (savedSettings) {
+        setUserSettings(JSON.parse(savedSettings));
+      } else {
+        // Default settings
+        setUserSettings({
+          autoplay: true,
+          quality: 'auto',
+          volume: 80,
+          playbackSpeed: 1,
+          subtitles: false,
+          theater: false,
+          miniPlayer: true,
+          annotations: true,
+        });
+      }
+    }
+  }, [currentUser]);
 
   const loadVideo = useCallback(async () => {
     if (id) {
@@ -91,7 +114,10 @@ const Watch: React.FC = () => {
         addToWatchHistory(id);
       }
     }
-  }, [id, loadVideo, loadComments, incrementViews, currentUser, addToWatchHistory]);
+    
+    // Load user settings
+    loadUserSettings();
+  }, [id, loadVideo, loadComments, incrementViews, currentUser, addToWatchHistory, loadUserSettings]);
 
   useEffect(() => {
     if (video && videos.length > 0) {
@@ -314,35 +340,18 @@ const Watch: React.FC = () => {
       <div className="flex flex-col lg:flex-row gap-0 lg:gap-6">
         {/* Main Video Section */}
         <div className="flex-1">
-          {/* Video Player - Responsive container */}
-          <div className="aspect-video bg-black rounded-none md:rounded-lg overflow-hidden mb-3 md:mb-4 mx-0 md:mx-3 lg:mx-6 max-w-full">
-            <ReactPlayer
+          {/* Enhanced Video Player */}
+          <div className="mb-3 md:mb-4 mx-0 md:mx-3 lg:mx-6 max-w-full">
+            <VideoPlayer
               url={video.videoUrl}
-              width="100%"
-              height="100%"
-              controls
-              playing={false}
-              config={{
-                file: {
-                  attributes: {
-                    crossOrigin: 'anonymous',
-                    controlsList: 'nodownload'
-                  }
-                }
-              }}
+              autoplay={userSettings?.autoplay || false}
+              volume={userSettings?.volume || 80}
+              playbackSpeed={userSettings?.playbackSpeed || 1}
+              subtitles={userSettings?.subtitles || false}
               onError={(error) => {
                 console.error('Video player error:', error);
                 toast.error('Error loading video. Please try refreshing the page.');
               }}
-              fallback={
-                <div className="flex items-center justify-center h-full bg-youtube-gray">
-                  <div className="text-center">
-                    <div className="text-4xl mb-4">📹</div>
-                    <p className="text-white">Video not available</p>
-                    <p className="text-youtube-lightgray text-sm">Please try again later</p>
-                  </div>
-                </div>
-              }
             />
           </div>
 

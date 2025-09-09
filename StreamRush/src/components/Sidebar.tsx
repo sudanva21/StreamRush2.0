@@ -153,11 +153,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, isMobile = false }) => {
               </div>
               {(isOpen || isMobile) && <span className="text-sm font-medium">Settings</span>}
             </Link>
-            <Link to="/report" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-youtube-gray transition-all duration-200 cursor-pointer group" title={!(isOpen || isMobile) ? 'Report history' : ''}>
+            <Link to="/report" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-youtube-gray transition-all duration-200 cursor-pointer group" title={!(isOpen || isMobile) ? 'Report content' : ''}>
               <div className="group-hover:scale-110 transition-transform duration-200">
                 <Flag size={20} />
               </div>
-              {(isOpen || isMobile) && <span className="text-sm font-medium">Report history</span>}
+              {(isOpen || isMobile) && <span className="text-sm font-medium">Report content</span>}
             </Link>
             <Link to="/help" className="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-youtube-gray transition-all duration-200 cursor-pointer group" title={!(isOpen || isMobile) ? 'Help' : ''}>
               <div className="group-hover:scale-110 transition-transform duration-200">

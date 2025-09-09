@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import { VideoProvider } from './contexts/VideoContextWithCloudinary';
 import { NotificationProvider } from './contexts/NotificationContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import BottomNavigation from './components/BottomNavigation';
@@ -24,6 +25,9 @@ import Playlists from './pages/Playlists';
 import Playlist from './pages/Playlist';
 import Admin from './pages/Admin';
 import Notifications from './pages/Notifications';
+import Settings from './pages/Settings';
+import Report from './pages/Report';
+import Help from './pages/Help';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false); // Default to closed on mobile
@@ -63,11 +67,12 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <VideoProvider>
-          <Router>
-          <div className="min-h-screen bg-youtube-dark text-white">
+    <ThemeProvider>
+      <AuthProvider>
+        <NotificationProvider>
+          <VideoProvider>
+            <Router>
+            <div className="min-h-screen bg-white dark:bg-youtube-dark text-gray-900 dark:text-white transition-colors duration-200">
             <Header onToggleSidebar={toggleSidebar} isMobile={isMobile} />
             <div className="flex">
               <Sidebar isOpen={sidebarOpen} isMobile={isMobile} />
@@ -102,6 +107,9 @@ function App() {
                   <Route path="/playlist/:id" element={<Playlist />} />
                   <Route path="/notifications" element={<Notifications />} />
                   <Route path="/admin" element={<Admin />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/report" element={<Report />} />
+                  <Route path="/help" element={<Help />} />
                 </Routes>
               </main>
             </div>
@@ -126,6 +134,7 @@ function App() {
         </VideoProvider>
       </NotificationProvider>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 
