@@ -30,15 +30,15 @@
     }
   ],
   "env": {
-    "VITE_FIREBASE_API_KEY": "@vite_firebase_api_key",
-    "VITE_FIREBASE_AUTH_DOMAIN": "@vite_firebase_auth_domain",
-    "VITE_FIREBASE_PROJECT_ID": "@vite_firebase_project_id",
-    "VITE_FIREBASE_STORAGE_BUCKET": "@vite_firebase_storage_bucket",
-    "VITE_FIREBASE_MESSAGING_SENDER_ID": "@vite_firebase_messaging_sender_id",
-    "VITE_FIREBASE_APP_ID": "@vite_firebase_app_id",
-    "VITE_FIREBASE_MEASUREMENT_ID": "@vite_firebase_measurement_id",
-    "VITE_CLOUDINARY_CLOUD_NAME": "@vite_cloudinary_cloud_name",
-    "VITE_CLOUDINARY_API_KEY": "@vite_cloudinary_api_key",
-    "VITE_CLOUDINARY_UPLOAD_PRESET": "@vite_cloudinary_upload_preset"
+    "VITE_FIREBASE_API_KEY": "AIzaSyC136_Tu7REHksgg6zVMYjDt7ty33SQ548",
+    "VITE_FIREBASE_AUTH_DOMAIN": "vidstream-98e50.firebaseapp.com",
+    "VITE_FIREBASE_PROJECT_ID": "vidstream-98e50",
+    "VITE_FIREBASE_STORAGE_BUCKET": "vidstream-98e50.firebasestorage.app",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID": "910715837016",
+    "VITE_FIREBASE_APP_ID": "1:910715837016:web:478f07f8fe638d2655c82d",
+    "VITE_FIREBASE_MEASUREMENT_ID": "G-2J03W47ZKB",
+    "VITE_CLOUDINARY_CLOUD_NAME": "dxcd1rspr",
+    "VITE_CLOUDINARY_API_KEY": "IEIm0pODuK11xh7FEzK1JQdtlQA",
+    "VITE_CLOUDINARY_UPLOAD_PRESET": "streamrush_uploads"
   }
 }
