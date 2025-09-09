@@ -12,7 +12,7 @@ export default defineConfig({
     allowedHosts: [
       'localhost',
       '127.0.0.1',
-      '14f060d22719.ngrok-free.app' // 👈 add your ngrok domain here
+      'https://stream-rush.vercel.app/' // 👈 add your ngrok domain here
     ]
   },
   preview: {
